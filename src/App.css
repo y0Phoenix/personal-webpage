@@ -1,0 +1,11 @@
+body {
+    background-color: gray
+}
+a {
+    text-decoration: none;
+    outline: none;
+}
+.main {
+    display: flex;
+    flex-direction: column
+}
