@@ -1,5 +1,6 @@
 body {
-    background-color: gray
+    background-color: gray;
+    font-family: Courier New;
 }
 a {
     text-decoration: none;
@@ -7,5 +8,6 @@ a {
 }
 .main {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    gap: 100px;
 }
