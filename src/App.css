@@ -1,3 +1,7 @@
+:root {
+    --content-padding: 75px
+}
+
 body {
     background-color: gray;
     font-family: Courier New;
