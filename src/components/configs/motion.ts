@@ -3,4 +3,7 @@ export const headerButtonHover = {
 };
 export const projectHover = {
     scale: 1.05
-}
+};
+export const normalButtonHover = {
+    scale: 1.02
+};

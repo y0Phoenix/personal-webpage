@@ -1,0 +1,59 @@
+.contact-main {    
+    display: flex;
+    flex-direction: column;
+    padding: var(--content-padding);
+    gap: 25px;
+}
+.contact-content {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+.input {
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    height: 50px;
+    background-color: rgb(30, 30, 30);
+    color: white;
+    width: 70vw;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, var(--baby-blue), var(--baby-blue));
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 0% 4px;
+    transition: background-size 0.5s ease;
+}
+.input:focus {
+    background-size: 100% 4px;
+}
+.input-small {
+    width: calc(35vw - 4px);
+}
+.message {
+    height: 195px;
+}
+.submit-button {
+    width: 150px;
+    height: 45px;
+    font-size: 25px;
+    align-self: flex-end;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--baby-blue);
+    border: 2px solid var(--baby-blue);
+    background-image: linear-gradient(to right, var(--baby-blue), var(--baby-blue));
+    background-size: 0% 100%;
+    transition: background-size 0.5s ease, color 0.4s ease;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+.submit-button:hover {
+    background-size: 100% 100%;
+    color: black;
+}

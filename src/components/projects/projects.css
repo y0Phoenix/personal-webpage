@@ -34,7 +34,7 @@
 }
 .project-button {
     color: black;
-    background-color: #0080FF;
+    background-color: var(--button-blue);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,7 @@
     border-radius: 8px
 }
 .project-button:hover {
-    background-color: #1E8FFF
+    background-color: var(--button-blue-hover);
 }
 .project-text {
     padding: 20px;
