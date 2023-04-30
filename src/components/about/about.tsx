@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { headerButtonHover } from "../configs/motion";
+import { aboutDelay, headerButtonHover, noShow, show } from "../configs/motion";
 import aaron from '../../assets/aaron.png';
 import './about.css';
 
 const About = () => {
     return (
-        <div className="about-main">
+        <motion.div initial={noShow} animate={show} transition={aboutDelay} className="about-main">
             <h1 className="header">About Me</h1>
             <div className="about-content">
                 <div className="about">
@@ -26,7 +26,7 @@ const About = () => {
                     <motion.img whileHover={headerButtonHover} src={aaron} className="aaron"></motion.img> 
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

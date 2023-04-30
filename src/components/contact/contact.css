@@ -18,7 +18,8 @@
     font-size: 25px;
     font-family: 'Courier New', Courier, monospace;
     height: 50px;
-    background-color: rgb(30, 30, 30);
+    /* background-color: rgb(30, 30, 30); */
+    background-color: var(--bg-light);
     color: white;
     width: 70vw;
     outline: none;
@@ -46,10 +47,9 @@
     background-color: rgba(0, 0, 0, 0);
     color: var(--baby-blue);
     border: 2px solid var(--baby-blue);
-    background-image: linear-gradient(to right, var(--baby-blue), var(--baby-blue));
+    background-image: linear-gradient(45deg, var(--baby-blue), var(--baby-blue));
     background-size: 0% 100%;
     transition: background-size 0.5s ease, color 0.4s ease;
-    background-position: bottom left;
     background-repeat: no-repeat;
     text-align: center;
 }

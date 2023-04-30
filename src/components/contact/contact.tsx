@@ -3,6 +3,10 @@ import './contact.css';
 import aaron from '../../assets/aaron.png';
 import {  normalButtonHover } from '../configs/motion';
 
+// TODO 
+// 1 make red underline for fields that are required if an invalid submit is submitted
+// 2 
+
 const Contact = () => {
     return (
         <div className="contact-main">

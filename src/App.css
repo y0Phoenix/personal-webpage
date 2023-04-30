@@ -3,11 +3,14 @@
     --button-blue: #0080FF;
     --button-blue-hover: #1E8FFF; 
     --baby-blue: #00CCC0;
+    --bg: #292929;
+    --bg-light: #111111;
 }
 
 body {
-    background-color: gray;
+    background-color: var(--bg);
     font-family: Courier New;
+    color: white;
 }
 a {
     text-decoration: none;
