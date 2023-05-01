@@ -3,8 +3,12 @@
     --button-blue: #0080FF;
     --button-blue-hover: #1E8FFF; 
     --baby-blue: #00CCC0;
+    --gradient-1: #00CCC0;
+    --gradient-2: #19A7CE;
+    --gradient-3: #146C94;
     --bg: #292929;
-    --bg-light: #111111;
+    --bg-dark: #111111;
+    --bg-light: #353535;
 }
 
 body {
@@ -36,3 +40,13 @@ a {
 .gap-xsm {
     gap: 4px;
 }
+.section {
+    padding: 25px;
+    border-radius: 8px;
+    background-color: var(--bg-light);
+}
+.highlighted { 
+    background-image: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; 
+} 

@@ -11,7 +11,7 @@ const Contact = () => {
     return (
         <div className="contact-main">
             <h1 className="header">Contact Me</h1>
-            <div className='contact-content'>
+            <div className='contact-content section'>
                 <form className='contact-form'>
                     <div className='flex row gap-xsm'>
                         <input placeholder='Name' className='input email input-small'/>

@@ -19,7 +19,7 @@
     font-family: 'Courier New', Courier, monospace;
     height: 50px;
     /* background-color: rgb(30, 30, 30); */
-    background-color: var(--bg-light);
+    background-color: var(--bg-dark);
     color: white;
     width: 70vw;
     outline: none;

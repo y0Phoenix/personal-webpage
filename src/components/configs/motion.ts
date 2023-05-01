@@ -14,8 +14,8 @@ export const noShow = {
     opacity: 0
 };
 export const headerDelay = {
-    delay: 0.5
+    delay: 0.3
 };
 export const aboutDelay = {
-    delay: 1
+    delay: 0.7
 };

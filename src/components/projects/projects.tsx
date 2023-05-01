@@ -6,7 +6,7 @@ const Projects = () => {
     return (
         <div className="projects-main">
             <h1 className='header'>Projects</h1>
-            <div className='projects-content'>
+            <div className='projects-content section'>
                 <motion.div whileHover={projectHover} className='project'>
                     <div className='project-title'>
                         Smoothy

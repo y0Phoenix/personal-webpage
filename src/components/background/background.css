@@ -1,0 +1,5 @@
+.square {
+    background-image: linear-gradient(45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+    position: absolute;
+    z-index: -1;
+}

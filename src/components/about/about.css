@@ -8,10 +8,17 @@
     flex-direction: column;
     gap: 25px;
     padding: var(--content-padding);
-    margin-top: 50px;
+    margin-top: 80px;
+    /* background-color: var(--bg-light); */
 }
 .about-content {
     display: flex;
     gap: 25px;
-    font-size: 24px;
+    font-size: 27px;
+    font-family: Open Sans;
+}
+.about {
+    background-color: var(--bg-light);
+    padding: 25px;
+    border-radius: 8px;
 }
