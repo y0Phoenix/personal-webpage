@@ -16,6 +16,10 @@ export const noShow = {
 export const headerDelay = {
     delay: 0.3
 };
+export const landingHeaderDelay = 0.5;
 export const aboutDelay = {
     delay: 0.7
+};
+export const sectionShowDelay = {
+    delay: 0.5
 };

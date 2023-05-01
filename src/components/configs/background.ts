@@ -22,4 +22,9 @@ export const squares: Square[] = [
     {rotate: "10deg", top: "180vh", right: "70vw", size: "5vw", delay: 1.40},
     {rotate: "19deg", top: "215vh", right: "10vw", size: "15vw", delay: 1.45},
     {rotate: "69deg", top: "215vh", right: "80vw", size: "20vw", delay: 1.50},
+    {rotate: "39deg", top: "255vh", right: "16vw", size: "9vw", delay: 1.55},
+    {rotate: "19deg", top: "260vh", right: "55vw", size: "17vw", delay: 1.60},
+    {rotate: "76deg", top: "290vh", right: "5vw", size: "25vw", delay: 1.65},
+    {rotate: "76deg", top: "285vh", right: "90vw", size: "20vw", delay: 1.70},
+    {rotate: "12deg", top: "310vh", right: "50vw", size: "19vw", delay: 1.75},
 ];

@@ -1,0 +1,16 @@
+.video {
+    width: fit-content;
+}
+.video-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 12vh;
+}
+.landing-header {
+    padding: var(--content-padding);
+    text-align: center;
+    text-justify: distribute-all-lines;
+}
