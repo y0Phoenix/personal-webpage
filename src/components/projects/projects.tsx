@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import './projects.css';
-import { projectHover } from '../configs/motion';
+import { projectHover, sectionNoShow, sectionShow, sectionShowTransition, } from '../configs/motion';
 
 const Projects = () => {
     return (
-        <div className="projects-main">
+        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} className="projects-main">
             <h1 className='header'>Projects</h1>
             <div className='projects-content section'>
                 <motion.div whileHover={projectHover} className='project'>
@@ -48,7 +48,7 @@ const Projects = () => {
                     </motion.div>
                 </motion.div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

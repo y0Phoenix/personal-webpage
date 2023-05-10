@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { aboutDelay, headerButtonHover, noShow, show } from "../configs/motion";
+import { headerButtonHover, sectionNoShow, sectionShow, sectionShowTransition, } from "../configs/motion";
 import aaron from '../../assets/aaron.png';
 import './about.css';
 
 const About = () => {
     return (
-        <motion.div initial={noShow} animate={show} transition={aboutDelay} className="about-main">
+        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} className="about-main">
             <h1 className="header">About Me</h1>
             <div className="about-content">
                 <div className="about">

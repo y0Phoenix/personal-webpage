@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './landing.css';
 import { motion } from 'framer-motion';
-import { landingHeaderDelay, noShow, show } from '../configs/motion';
+import { landingHeaderDelay, noShow, sectionNoShow, sectionShow, sectionShowTransition, show } from '../configs/motion';
 
 const VIDEO_WIDTH = 560;
 const VIDEO_HEIGHT = 315;
@@ -21,11 +21,11 @@ const Landing = () => {
     const videoWidth = (windowSize / 1000) * VIDEO_WIDTH;
     console.log(videoHeight, videoWidth);
 
-    const header = "Hi I'm Aaron. I am a Certified Full Stack Engineer.\nPlease Enjoy my Website :)";
+    const header = "Hi 👋 I'm Aaron. I am a Certified Full Stack Engineer 👨‍💻\nPlease Enjoy my Website 🙂";
     let letterCount = 0;
 
     return (
-        <div className='video-main'>
+        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} className='video-main'>
             <h1 className='header landing-header'>
                {header.split("").map(str => {
                    letterCount += 0.05;
@@ -38,10 +38,10 @@ const Landing = () => {
             </h1>
             <div className="video section">
                 <iframe width={videoWidth} height={videoHeight} src="https://www.youtube.com/embed/NqfQgthE0O8" title="YouTube video player" 
-                   frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                   frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
                 </iframe>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

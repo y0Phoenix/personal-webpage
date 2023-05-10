@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import './contact.css';
 import aaron from '../../assets/aaron.png';
-import {  normalButtonHover } from '../configs/motion';
+import { normalButtonHover, sectionNoShow, sectionShow, sectionShowTransition, } from '../configs/motion';
 
 // TODO 
 // 1 make red underline for fields that are required if an invalid submit is submitted
@@ -9,7 +9,7 @@ import {  normalButtonHover } from '../configs/motion';
 
 const Contact = () => {
     return (
-        <div className="contact-main">
+        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} className="contact-main">
             <h1 className="header">Contact Me</h1>
             <div className='contact-content section'>
                 <form className='contact-form'>
@@ -23,7 +23,7 @@ const Contact = () => {
                 </form> 
                 <motion.img whileHover={normalButtonHover} src={aaron} className="aaron"></motion.img> 
             </div>
-        </div>
+        </motion.div>
     )
 };
 

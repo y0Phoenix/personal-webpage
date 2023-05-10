@@ -1,14 +1,38 @@
-import { motion } from 'framer-motion';
-import { squares } from '../configs/background';
+import { SQUARE_COUNT, Polygons} from '../configs/background';
 import './background.css';
-import { noShow, show } from '../configs/motion';
+import { useEffect, useState } from 'react';
 
 const Background = () => {
+    const [squares, setSquares] = useState<Polygons>();
+    useEffect(() => {
+        const squares = new Polygons();
+        setSquares(squares);
+        // const squareElements = document.getElementsByName("square");
+        // const interval = setInterval(() => {
+        //     squareElements.forEach(square => {
+        //         const poly = squares.getSquareById(square.id);
+        //         poly?.update(square);
+        //     }); 
+        //     setSquares(newSquares);
+        // }, 250);
+        // return () => clearInterval(interval);
+    }, []);
     return (
        <>
-            {squares.map(square => {
-                const {rotate, top, right, size, delay} = square;
-                return <motion.div className='square' style={{rotate, top, right, height: size, width: size}} initial={noShow} animate={show} transition={{delay}}></motion.div>
+            {(squares && squares.polygons.length == SQUARE_COUNT) && squares.polygons.map(square => {
+                const {angle, rect, size, id} = square;
+                const gradient = Math.round(Math.random()) + 1;
+                return (
+                    <div className={`square square-gradient-${gradient}`}
+                        style={{
+                            rotate: `${angle}deg`,
+                            height: `${size}vw`,
+                            width: `${size}vw`,
+                            top: `${rect.top}vw`,
+                            left: `${rect.left}vw`
+                        }} name='square' id={id} 
+                    ></div>
+                )
             })}
        </> 
     )

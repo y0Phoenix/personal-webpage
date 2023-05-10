@@ -1,5 +1,14 @@
 .square {
-    background-image: linear-gradient(45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
     position: absolute;
     z-index: -1;
+}
+.square-gradient-1 {
+    background-image: linear-gradient(45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+	background-size: 200% 200%;
+    animation: animate 3s ease infinite;
+}
+.square-gradient-2 {
+    background-image: linear-gradient(45deg, var(--gradient-2-1), var(--gradient-2-2), var(--gradient-2-3));
+	background-size: 200% 200%;
+    animation: animate 3s ease infinite;
 }
