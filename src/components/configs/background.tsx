@@ -3,9 +3,15 @@ export const SIZE_MIN = 7;
 export const SIZE_MAX = 25;
 export const SQUARE_COUNT = 20;
 export const SQUARES_PER_COLUMN = 2;
-export const RIGHT_BOUNDARY_BUFFER = 50;
-export const LEFT_BOUNDARY_BUFFER = 15;
+export const RIGHT_BOUNDARY_BUFFER = 75;
+export const LEFT_BOUNDARY_BUFFER = 50;
 export const TOP_BOUNDARY_BUFFER = 100;
+export const X_VELOCITY_MIN = 0.15;
+export const X_VELOCITY_MAX = 0.75;
+export const Y_VELOCITY_MIN = 0.05;
+export const Y_VELOCITY_MAX = 0.35;
+export const ANGLE_VELOCITY_MIN = 0.65;
+export const ANGLE_VELOCITY_MAX = 0.95;
 
 // props for the polygon constructor
 export type PolygonProps = {
@@ -47,19 +53,12 @@ export class Polygon {
      * the vertices with the angle calculated
      * */
     trVertices: Vec2[] = [];
-    direction: Direction = {
-        x: "right",
-        y: "up",
-        angle: "clockwise"
-    }
+    direction: Direction; 
     /**
      * values are in px not vw
      * */
-    velocity: Velocity = {
-        x: 0,
-        y: 0,
-        angle: 0
-    }
+    velocity: Velocity;
+
     constructor({
         leftSide,
         column,
@@ -80,20 +79,11 @@ export class Polygon {
         };
         this.size = random(SIZE_MIN, SIZE_MAX);
         this.angle = random(0, 90);
+        this.velocity = new Velocity();
+        this.direction = new Direction();
         this.id = id;
-        const halfSize = vwToPx(this.size) / 2;
-        this.center = {
-            x: vwToPx(this.rect.left) + halfSize,
-            y: vwToPx(this.rect.top) + halfSize
-        };
         this.getOgVertices();
         this.transformVertices();
-        this.direction = {
-            x: random(0, 1) == 1 ? "right" : "left",
-            y: random(0, 1) == 1 ? "up" : "down",
-            angle: random(0, 1) == 1 ? "clockwise" : "counterclockwise"
-        };
-        this.moveFromBoundaries();
     }
     /**
      * apply the angle to the vertices to get the transformed vertices
@@ -119,6 +109,12 @@ export class Polygon {
             {x: vwToPx(this.rect.left) + vwToPx(this.size), y: vwToPx(this.rect.top) + vwToPx(this.size)},
             {x: vwToPx(this.rect.left), y: vwToPx(this.rect.top) + vwToPx(this.size)}
         ];
+        const halfSize = vwToPx(this.size) / 2;
+        this.center = {
+            x: vwToPx(this.rect.left) + halfSize,
+            y: vwToPx(this.rect.top) + halfSize
+        };
+
     }
     /**
      * check if the polygon is outofbounds. returns an OutOfBounds enum which determines where the shape is out of bounds
@@ -127,10 +123,22 @@ export class Polygon {
         for(let i = 0; i < this.trVertices.length; i++) {
             const vertex = this.trVertices[i];
             const bodyHeight = document.body.scrollHeight;
-            if (vertex.x >= document.body.clientWidth - RIGHT_BOUNDARY_BUFFER) return OutOfBounds.right;
-            else if (vertex.x <= LEFT_BOUNDARY_BUFFER) return OutOfBounds.left;
-            else if (vertex.y >= bodyHeight) return OutOfBounds.bottom;
-            else if (vertex.y <= TOP_BOUNDARY_BUFFER) return OutOfBounds.top;
+            if (vertex.x >= document.body.clientWidth - RIGHT_BOUNDARY_BUFFER) {
+                this.direction.x = "left";
+                return OutOfBounds.right;
+            }
+            else if (vertex.x <= LEFT_BOUNDARY_BUFFER) {
+                this.direction.x = "right";
+                return OutOfBounds.left;
+            }
+            else if (vertex.y >= bodyHeight) {
+                this.direction.y = "up";
+                return OutOfBounds.bottom;
+            }
+            else if (vertex.y <= TOP_BOUNDARY_BUFFER) {
+                this.direction.y = "down";
+                return OutOfBounds.top;
+            }
         }
         return OutOfBounds.not;
     }
@@ -146,21 +154,29 @@ export class Polygon {
             // if we have changed the out of bounds type we change the direction as well
             if (newOutOfBounds !== outOfBounds) {
                 this.setDirectionBoundaries(newOutOfBounds);
-                console.log("setting new direction");
             }
             if (newOutOfBounds == OutOfBounds.not) return;
            
-            // move the shape only in the direction we need to
-            if (newOutOfBounds == OutOfBounds.left) this.rect.left = this.rect.left + 5;
-            else if (newOutOfBounds == OutOfBounds.right) this.rect.left = this.rect.left - 5;
-            else if (newOutOfBounds == OutOfBounds.top) this.rect.top = this.rect.top + 5;
-            else if (newOutOfBounds == OutOfBounds.bottom) this.rect.top = this.rect.top - 5;
+            this.move(5);
+
             this.getOgVertices();
             this.transformVertices();
         }
     }
-    move() {
-        // 
+    move(amount: number) {
+        const velocity: Velocity = {
+            x: amount > 0 ? amount : this.velocity.x,
+            y: amount > 0 ? amount : this.velocity.y,
+            angle: this.velocity.angle
+        };
+        if (this.direction.x == "left") this.rect.left = this.rect.left - velocity.x;
+        else this.rect.left = this.rect.left + velocity.x;
+
+        if (this.direction.y == "up") this.rect.top = this.rect.top - velocity.y;
+        else this.rect.top = this.rect.top + velocity.y;
+
+        if (this.direction.angle == "counterclockwise") this.angle = this.angle - velocity.angle;
+        else this.angle = this.angle + velocity.angle;
     }
     /**
      * set the new direction based on the OutOfBounds type
@@ -192,6 +208,8 @@ export class Polygons {
                 }));
             }
         }
+        this.checkCollisions(true);
+        this.polygons.forEach(polygon => polygon.moveFromBoundaries());
     }
     /**
      * gets the polygon from the id if it exists otherwise returns null
@@ -202,10 +220,56 @@ export class Polygons {
         }
         return null;
     }
-    checkCollisions() {
-        for (let i = 0; i < this.polygons.length; i = i + 2) {
-            
+    checkCollisions(spawn: boolean) {
+        for (let i = 0; i < this.polygons.length; i++) {
+            const poly1 = this.polygons[i];
+            for (let j = 0; j < this.polygons.length; j++) {
+                const poly2 = this.polygons[j];
+                if (poly1.id != poly2.id) {
+                    if (collision(poly1.trVertices, poly2.trVertices)) {
+                        const poly1Dir = poly2.direction;
+                        const poly2Dir = poly1.direction;
+                        if (poly1Dir.xCmp(poly2Dir)) poly1Dir.swapX();
+                        if (poly1Dir.yCmp(poly2Dir)) poly1Dir.swapY();
+
+                        if (spawn) {
+                            poly1.move(5);
+                            poly2.move(5);
+                        
+                            while(collision(poly1.trVertices, poly2.trVertices)) {
+                                poly1.move(5);
+                                poly2.move(5);
+                        
+                                poly1.getOgVertices();
+                                poly1.transformVertices();
+                        
+                                poly2.getOgVertices();
+                                poly2.transformVertices();
+                            }
+                            poly1.move(10);
+                            poly2.move(10);
+                        }
+                    }
+                }
+            }
         }
+    }
+    update(elements: NodeListOf<HTMLElement>) {
+        this.checkCollisions(false);
+        elements.forEach(element => {
+            const poly = this.getPolyById(element.id);
+            if (!poly) return;
+            poly.move(0);
+
+            poly.getOgVertices();
+            poly.transformVertices();
+
+            poly.checkBoundaries();
+
+            element.style.left = poly.rect.left + "vw";
+            element.style.top = poly.rect.top + "vw";
+            element.style.rotate = poly.angle + "deg";
+        });
     }
 }
 
@@ -225,15 +289,51 @@ export enum OutOfBounds {
     bottom,
     not
 }
-export type Direction = {
-    x: "left" | "right",
-    y: "up" | "down",
-    angle: "clockwise" | "counterclockwise"
+export class Direction {
+    x: "left" | "right" = "left";
+    y: "up" | "down" = "up";
+    angle: "clockwise" | "counterclockwise" = "clockwise"
+    constructor() {
+        this.x = random(0, 1) == 1 ? "right" : "left";
+        this.y = random(0, 1) == 1 ? "up" : "down";
+        this.angle = random(0, 1) == 1 ? "clockwise" : "counterclockwise";
+
+    }
+    fullCmp(dir2: Direction): boolean {
+        return this.x == dir2.x && this.y == dir2.y && this.angle == dir2.angle;
+    }
+    xCmp(dir2: Direction): boolean {
+        return this.x == dir2.x;
+    }
+    yCmp(dir2: Direction): boolean {
+        return this.y == dir2.y;
+    }
+    swapY() {
+        if (this.y == "up") return this.y = "down";
+        this.y = "up";
+    }
+    swapX() {
+        if (this.x == "left") return this.x = "right";
+        this.x = "left";
+    }
+    swapAngle() {
+        if (this.angle == "clockwise") return this.angle = "counterclockwise";
+        this.angle = "clockwise";
+    }
 }
-export type Velocity = {
-    x: number,
-    y: number,
-    angle: number
+export class Velocity {
+    x = 0;
+    y = 0;
+    angle = 0;
+    constructor() {
+        this.x = random(X_VELOCITY_MIN, X_VELOCITY_MAX);
+        this.y = random(Y_VELOCITY_MIN, Y_VELOCITY_MAX);
+        this.angle = random(ANGLE_VELOCITY_MIN, ANGLE_VELOCITY_MAX);
+    }
+}
+export type Projection = {
+    min: number,
+    max: number
 }
 
 /**
@@ -254,3 +354,50 @@ export function vwToPx(vw: number): number {
 export function pxToVw(px: number): number {
     return px / window.innerWidth * 100;
 }
+export function dotProduct(v1: Vec2, v2: Vec2) : number{
+    return v1.x * v2.x + v1.y * v2.y;
+}
+
+export function getEdges(vertices: Vec2[]) : Vec2[] {
+    const edges = [];
+    for (let i = 0; i < vertices.length; i++) {
+        const v1 = vertices[i];
+        const v2 = vertices[i + 1 === vertices.length ? 0 : i + 1];
+        edges.push({ x: v2.x - v1.x, y: v2.y - v1.y });
+    }
+    return edges;
+}
+
+export function getPerpendicular(edge: Vec2) : Vec2 {
+    return { x: -edge.y, y: edge.x };
+}
+
+export function project(vertices: Vec2[], axis: Vec2): Projection {
+    const projections = vertices.map(vertex => dotProduct(vertex, axis));
+    return {
+        min: Math.min(...projections),
+        max: Math.max(...projections),
+    };
+}
+
+export function checkOverlap(proj1: Projection, proj2: Projection): boolean {
+    return proj1.min <= proj2.max && proj1.max >= proj2.min;
+}
+
+export function collision(vertices1: Vec2[], vertices2: Vec2[]): boolean {
+    const edges1 = getEdges(vertices1);
+    const edges2 = getEdges(vertices2);
+
+    for (const edge of [...edges1, ...edges2]) {
+        const axis = getPerpendicular(edge);
+        const proj1 = project(vertices1, axis);
+        const proj2 = project(vertices2, axis);
+
+        if (!checkOverlap(proj1, proj2)) {
+            return false; // Separating axis found
+        }
+    }
+
+    return true; // No separating axis found, polygons are colliding
+}
+

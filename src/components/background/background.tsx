@@ -1,4 +1,4 @@
-import { SQUARE_COUNT, Polygons} from '../configs/background';
+import { SQUARE_COUNT, Polygons, Polygon} from '../configs/background';
 import './background.css';
 import { useEffect, useState } from 'react';
 
@@ -7,15 +7,12 @@ const Background = () => {
     useEffect(() => {
         const squares = new Polygons();
         setSquares(squares);
-        // const squareElements = document.getElementsByName("square");
-        // const interval = setInterval(() => {
-        //     squareElements.forEach(square => {
-        //         const poly = squares.getSquareById(square.id);
-        //         poly?.update(square);
-        //     }); 
-        //     setSquares(newSquares);
-        // }, 250);
-        // return () => clearInterval(interval);
+        const squareElements = document.getElementsByName("square");
+        const interval = setInterval(() => {
+            squares.update(squareElements); 
+            setSquares(squares); 
+        }, 50);
+        return () => clearInterval(interval);
     }, []);
     return (
        <>
