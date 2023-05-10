@@ -1,4 +1,4 @@
-import { SQUARE_COUNT, Polygons, Polygon} from '../configs/background';
+import { SQUARE_COUNT, Polygons} from '../configs/background';
 import './background.css';
 import { useEffect, useState } from 'react';
 

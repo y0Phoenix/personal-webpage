@@ -1,11 +1,11 @@
 // conatnts for configuring the overall behavior of the polygons
 export const SIZE_MIN = 4;
 export const SIZE_MAX = 12;
-export const SQUARE_COUNT = 30;
+export const SQUARE_COUNT = 50;
 export const SQUARES_PER_COLUMN = 2;
-export const RIGHT_BOUNDARY_BUFFER = 30;
-export const LEFT_BOUNDARY_BUFFER = 10;
-export const TOP_BOUNDARY_BUFFER = 100;
+export const RIGHT_BOUNDARY_BUFFER = 100;
+export const LEFT_BOUNDARY_BUFFER = 5;
+export const TOP_BOUNDARY_BUFFER = window.innerWidth <= 500 ? 550 : 100;
 export const X_VELOCITY_MIN = 0.15;
 export const X_VELOCITY_MAX = 0.45;
 export const Y_VELOCITY_MIN = 0.05;
@@ -211,6 +211,7 @@ export class Polygons {
         }
         this.checkCollisions(true);
         this.polygons.forEach(polygon => polygon.moveFromBoundaries());
+        this.polygons.forEach(polygon => polygon.moveFromBoundaries());
     }
     /**
      * gets the polygon from the id if it exists otherwise returns null
@@ -274,16 +275,17 @@ export class Polygons {
         elements.forEach(element => {
             const poly = this.getPolyById(element.id);
             if (!poly) return;
+            poly.checkBoundaries();
+
             poly.move(0);
 
             poly.getOgVertices();
             poly.transformVertices();
 
-            poly.checkBoundaries();
-
             element.style.left = poly.rect.left + "vw";
             element.style.top = poly.rect.top + "vw";
             element.style.rotate = poly.angle + "deg";
+            // element.style.transform = `translate(${vwToPx(poly.rect.top)}px,${vwToPx(poly.rect.left)}px)`;
         });
     }
 }
