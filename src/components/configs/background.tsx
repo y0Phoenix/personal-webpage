@@ -1,13 +1,13 @@
 // conatnts for configuring the overall behavior of the polygons
-export const SIZE_MIN = 7;
-export const SIZE_MAX = 25;
-export const SQUARE_COUNT = 20;
+export const SIZE_MIN = 4;
+export const SIZE_MAX = 12;
+export const SQUARE_COUNT = 30;
 export const SQUARES_PER_COLUMN = 2;
-export const RIGHT_BOUNDARY_BUFFER = 75;
-export const LEFT_BOUNDARY_BUFFER = 50;
+export const RIGHT_BOUNDARY_BUFFER = 30;
+export const LEFT_BOUNDARY_BUFFER = 10;
 export const TOP_BOUNDARY_BUFFER = 100;
 export const X_VELOCITY_MIN = 0.15;
-export const X_VELOCITY_MAX = 0.75;
+export const X_VELOCITY_MAX = 0.45;
 export const Y_VELOCITY_MIN = 0.05;
 export const Y_VELOCITY_MAX = 0.35;
 export const ANGLE_VELOCITY_MIN = 0.65;
@@ -54,6 +54,7 @@ export class Polygon {
      * */
     trVertices: Vec2[] = [];
     direction: Direction; 
+    inCollision = false;
     /**
      * values are in px not vw
      * */
@@ -223,35 +224,49 @@ export class Polygons {
     checkCollisions(spawn: boolean) {
         for (let i = 0; i < this.polygons.length; i++) {
             const poly1 = this.polygons[i];
+            let collisionFound = false;
             for (let j = 0; j < this.polygons.length; j++) {
                 const poly2 = this.polygons[j];
                 if (poly1.id != poly2.id) {
                     if (collision(poly1.trVertices, poly2.trVertices)) {
-                        const poly1Dir = poly2.direction;
-                        const poly2Dir = poly1.direction;
-                        if (poly1Dir.xCmp(poly2Dir)) poly1Dir.swapX();
-                        if (poly1Dir.yCmp(poly2Dir)) poly1Dir.swapY();
+                        collisionFound = true;
+                        if (!poly1.inCollision) {
+                            const poly1Dir = poly2.direction;
+                            const poly2Dir = poly1.direction;
 
-                        if (spawn) {
-                            poly1.move(5);
-                            poly2.move(5);
-                        
-                            while(collision(poly1.trVertices, poly2.trVertices)) {
+                            poly1.inCollision = true;
+                            poly2.inCollision = true;
+
+                            if (spawn) {
+                                if (poly1Dir.xCmp(poly2Dir)) poly1Dir.swapX();
+                                if (poly1Dir.yCmp(poly2Dir)) poly1Dir.swapY();
                                 poly1.move(5);
                                 poly2.move(5);
-                        
-                                poly1.getOgVertices();
-                                poly1.transformVertices();
-                        
-                                poly2.getOgVertices();
-                                poly2.transformVertices();
+
+                                while(collision(poly1.trVertices, poly2.trVertices)) {
+                                    poly1.move(5);
+                                    poly2.move(5);
+
+                                    poly1.getOgVertices();
+                                    poly1.transformVertices();
+
+                                    poly2.getOgVertices();
+                                    poly2.transformVertices();
+                                }
+                                poly1.move(10);
+                                poly2.move(10);
                             }
-                            poly1.move(10);
-                            poly2.move(10);
+                            else {
+                                poly1.direction.swapY();
+                                poly1.direction.swapX();
+                                poly2.direction.swapY();
+                                poly2.direction.swapX();
+                            }
                         }
                     }
                 }
             }
+            if (!collisionFound) poly1.inCollision = false;
         }
     }
     update(elements: NodeListOf<HTMLElement>) {
