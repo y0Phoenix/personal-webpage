@@ -3,6 +3,7 @@
 }
 .projects-content {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     gap: 35px;
 }
@@ -11,10 +12,15 @@
     padding: 0 25px 0 25px;
     border-radius: 8px;
     position: relative;
+    flex: 1 0 25%;
+}
+.project-img-container {
+    max-width: 100%;
+    height: auto;
 }
 .project-img {
-    width: calc(23vw - 92px);
-    height: calc(23vw - 92px);
+    max-width: 100%;
+    height: auto;
 }
 .project-title {
     font-size: 25px;
