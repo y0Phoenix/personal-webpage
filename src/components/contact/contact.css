@@ -1,3 +1,8 @@
+/* original img size is 846x928 */
+.aaron {
+    width: 14vw;
+    height: 15vw;
+}
 .contact-main {    
     display: flex;
     flex-direction: column;
@@ -7,7 +12,9 @@
 .contact-content {
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 .contact-form {
     display: flex;
@@ -17,11 +24,11 @@
 .input {
     font-size: 25px;
     font-family: 'Courier New', Courier, monospace;
-    height: 50px;
+    height: 57px;
     /* background-color: rgb(30, 30, 30); */
     background-color: var(--bg-dark);
     color: white;
-    width: 70vw;
+    width: 1900px;
     outline: none;
     border: none;
     background-image: linear-gradient(to right, var(--baby-blue), var(--baby-blue));
@@ -34,7 +41,7 @@
     background-size: 100% 4px;
 }
 .input-small {
-    width: calc(35vw - 4px);
+    width: 946px;
 }
 .message {
     height: 195px;
@@ -56,4 +63,39 @@
 .submit-button:hover {
     background-size: 100% 100%;
     color: black;
+}
+@media (max-width: 2560px) {
+    .input {
+       width: 1900px; 
+    }
+    .input-small {
+        width: 946px;
+    }
+}
+@media (max-width: 1440px) {
+    .input {
+       width: 800px; 
+    }
+    .input-small {
+        width: 396px;
+    }
+    .aaron {
+       width: 22vw;
+       height: 23vw;
+    }
+}
+@media (max-width: 1024px) {
+    .input {
+       width: 700px; 
+    }
+    .input-small {
+        width: 346px;
+    }
+    .contact-content {
+        flex-direction: column;
+    }
+    .aaron {
+       width: 22vw;
+       height: 23vw;
+    }
 }

@@ -1,5 +1,5 @@
 :root {
-    --content-padding: 75px;
+    --content-padding: 100px;
     --button-blue: #0080FF;
     --button-blue-hover: #1E8FFF; 
     --baby-blue: #00CCC0;
@@ -26,7 +26,7 @@ a {
 .main {
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 50px;
 }
 .flex {
     display: flex;

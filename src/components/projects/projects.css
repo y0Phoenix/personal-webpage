@@ -13,8 +13,8 @@
     position: relative;
 }
 .project-img {
-    width: calc(23vw - 98px);
-    height: calc(23vw - 98px);
+    width: calc(23vw - 92px);
+    height: calc(23vw - 92px);
 }
 .project-title {
     font-size: 25px;

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { headerButtonHover, sectionNoShow, sectionShow, sectionShowTransition, } from "../configs/motion";
-import aaron from '../../assets/aaron.png';
+import aaron from '../../assets/istockphoto-1372353155-612x612.jpg';
 import './about.css';
 
 const About = () => {
@@ -22,10 +22,8 @@ const About = () => {
                         binary <i className="highlighted">C++</i> code, ontop of being a <i className="highlighted">Web Developer</i> I have learned so much in my short "dev age".
                     </p>
                 </div>
-                <div className="about">
-                    <motion.img whileHover={headerButtonHover} src={aaron} className="aaron"></motion.img> 
-                </div>
             </div>
+            <img src={aaron}></img> 
         </motion.div>
     )
 }

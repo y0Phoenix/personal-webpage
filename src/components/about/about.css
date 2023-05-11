@@ -1,8 +1,4 @@
-/* original img size is 846x928 */
-.aaron {
-    width: 282px;
-    height: 309px;
-}
+
 .about-main {
     display: flex;
     flex-direction: column;
@@ -14,11 +10,29 @@
 .about-content {
     display: flex;
     gap: 25px;
-    font-size: 27px;
+    font-size: 35px;
     font-family: Open Sans;
 }
 .about {
     background-color: var(--bg-light);
     padding: 25px;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width: 2000px) {
+    .about-content {
+        font-size: 60px;
+    }
+}
+@media (min-width: 1440px) {
+    .about-content {
+        font-size: 40px;
+    }
+}
+@media (min-width: 1024px) {
+    .about-content {
+        font-size: 30px;
+    }
 }

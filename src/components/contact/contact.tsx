@@ -14,12 +14,12 @@ const Contact = () => {
             <div className='contact-content section'>
                 <form className='contact-form'>
                     <div className='flex row gap-xsm'>
-                        <input placeholder='Name' className='input email input-small'/>
-                        <input placeholder='Email' className='input email input-small'/>
+                        <input placeholder='Name' className='input email input-small' />
+                        <input placeholder='Email' className='input email input-small' />
                     </div>
-                    <input placeholder='Subject' className='input subject'/>
-                    <textarea placeholder='Message' className='input message'></textarea>
-                    <input className='submit-button' value='Submit'/>
+                    <input placeholder='Subject' className='input subject' />
+                    <textarea placeholder='Message' className='input message' ></textarea>
+                    <input className='submit-button' value='Submit' />
                 </form> 
                 <motion.img whileHover={normalButtonHover} src={aaron} className="aaron"></motion.img> 
             </div>
