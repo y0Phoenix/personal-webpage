@@ -11,7 +11,7 @@ const Background = () => {
         const interval = setInterval(() => {
             squares.update(squareElements); 
             setSquares(squares); 
-        }, 50);
+        }, 75);
         return () => clearInterval(interval);
     }, []);
     return (
@@ -20,7 +20,7 @@ const Background = () => {
                 const {angle, rect, size, id} = square;
                 const gradient = Math.round(Math.random()) + 1;
                 return (
-                    <div className={`square square-gradient-${gradient}`}
+                    <div key={id} className={`square square-gradient-${gradient}`}
                         style={{
                             rotate: `${angle}deg`,
                             height: `${size}vw`,

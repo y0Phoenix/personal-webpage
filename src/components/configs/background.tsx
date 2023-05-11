@@ -1,7 +1,7 @@
 // conatnts for configuring the overall behavior of the polygons
 export const SIZE_MIN = 4;
 export const SIZE_MAX = 12;
-export const SQUARE_COUNT = 50;
+export const SQUARE_COUNT = 20;
 export const SQUARES_PER_COLUMN = 2;
 export const RIGHT_BOUNDARY_BUFFER = 100;
 export const LEFT_BOUNDARY_BUFFER = 5;
