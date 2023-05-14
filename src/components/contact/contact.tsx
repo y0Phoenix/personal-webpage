@@ -10,20 +10,39 @@ import { normalButtonHover, sectionNoShow, sectionShow, sectionShowTransition, }
 const Contact = () => {
     return (
         <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} className="contact-main">
-            <h1 className="header">Contact Me</h1>
-            <div className='contact-content section'>
-                <form className='contact-form'>
-                    <div className='flex row gap-xsm'>
-                        <input placeholder='Name' className='input email input-small' />
-                        <input placeholder='Email' className='input email input-small' />
-                    </div>
-                    <input placeholder='Subject' className='input subject' />
-                    <textarea placeholder='Message' className='input message' ></textarea>
-                    <input className='submit-button' value='Submit' />
-                </form> 
-                <motion.img whileHover={normalButtonHover} src={aaron} className="aaron"></motion.img> 
+            <h1 className='header'>Contact Me</h1>
+            <div className='contact section'>
+                <div className="input-container">
+                    <form className="form-group" autoComplete="off">
+                        <div className="name-email-container">
+                            <div className="form-group">
+                                <input type="text" id="name" name="name" className="input" placeholder="Name"></input>
+                            </div>
+                            <div className="form-group">
+                                <input type="email" id="email" name="email" className="input" placeholder="Email"></input>
+                            </div>
+                        </div>
+                        <div className="subject-container">
+                            <div className="form-group">
+                                <input type="text" id="subject" name="subject" className="input" placeholder="Subject"></input>
+                            </div>
+                        </div>
+                        <div className="message-container">
+                            <div className="form-group">
+                                <textarea id="message" name="message" className="input message" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                        <div className="submit-container">
+                            <input className="submit-button" value="Submit"></input>
+                        </div>
+                    </form>
+                </div>
+                <motion.div whileHover={normalButtonHover} className="image-container">
+                    <img src={aaron} alt="Your image"></img>
+                </motion.div>
             </div>
         </motion.div>
+
     )
 };
 
