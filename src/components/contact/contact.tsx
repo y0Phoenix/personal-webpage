@@ -9,7 +9,7 @@ import { normalButtonHover, sectionNoShow, sectionShow, sectionShowTransition, }
 
 const Contact = () => {
     return (
-        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} className="contact-main">
+        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} viewport={{ once: true }} className="contact-main">
             <h1 className='header'>Contact Me</h1>
             <div className='contact section'>
                 <div className="input-container">

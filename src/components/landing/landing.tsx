@@ -27,7 +27,7 @@ const Landing = () => {
     //         width: videoWidth()
     //     });
     // });
-    
+
     // useEffect(() => {
     //     const handleResize = () => setWindowSize(window.innerWidth);
     //
@@ -35,26 +35,26 @@ const Landing = () => {
     //
     //     return () => window.removeEventListener("resize", handleResize);
     // }, []);
-    
+
     const header = "Hi 👋 I'm Aaron. I am a Certified Full Stack Engineer 👨‍💻\nPlease Enjoy my Website 🙂";
     let letterCount = 0;
 
     return (
         <div className='landing-main'>
             <h1 className='header landing-header'>
-            {header.split("").map((str, i) => {
+                {header.split("").map((str, i) => {
                     letterCount += 0.05;
                     return (
-                            <motion.span key={str + i} initial={noShow} animate={show} transition={{delay: letterCount + landingHeaderDelay}}>
+                        <motion.span key={str + i} initial={noShow} animate={show} transition={{ delay: letterCount + landingHeaderDelay }}>
                             {str}
-                            </motion.span>
-                           )
+                        </motion.span>
+                    )
                 })}
             </h1>
-            <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} className='video-main-container'>
+            <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} viewport={{ once: true }} className='video-main-container'>
                 <div className='video-main section'>
                     <div className="video-container">
-                        <iframe className='video' /** width={videoRes.width} height={videoRes.height} **/ src="https://www.youtube.com/embed/NqfQgthE0O8" title="YouTube video player" 
+                        <iframe className='video' /** width={videoRes.width} height={videoRes.height} **/ src="https://www.youtube.com/embed/NqfQgthE0O8" title="YouTube video player"
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
                         </iframe>
                     </div>

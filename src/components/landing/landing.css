@@ -49,6 +49,11 @@
         padding: 0 125px 0 125px;
     }
 }
+@media (max-width: 800px) {
+    .landing-main {
+        margin-top: 300px;
+    }
+}
 @media (max-width: 768px) {
     .video-main-container {
         padding: 0 75px 0 75px;

@@ -38,6 +38,9 @@
     left: 0;
     width: 100%;
 }
+.hide {
+    display: block;
+}
 .header-button {
     font-size: 25px;
     color: black;
