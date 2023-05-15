@@ -13,25 +13,38 @@ const Header = () => {
         else if (window.scrollY < hidePos && !showLinks && isVertical) setShowLinks(true);
     });
 
+    const handleClick = (e: any, id: string) => {
+        e.preventDefault();
+        if (id == "#landing") return window.scrollTo({
+            top: -100,
+            behavior: "smooth"
+        })
+        document.querySelector(id)?.scrollIntoView({
+            behavior: "smooth"
+        })
+    }
+
     return (
-        <motion.div initial={noShow} animate={show} transition={headerDelay} className='header-main'>
-            <motion.img whileHover={headerButtonHover} src={logo} className='logo'></motion.img>
-            <AnimatePresence>
+        <AnimatePresence>
+            <motion.div initial={noShow} animate={show} transition={headerDelay} className='header-main'>
+                <motion.div whileHover={headerButtonHover} onClick={(e) => handleClick(e, "#landing")}>
+                    <img src={logo} className="logo"></img>
+                </motion.div>
                 {showLinks &&
                     < motion.div className='header-links' initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, type: "spring" }}>
-                        <motion.a whileHover={headerButtonHover} className='header-button' href='#about-me'>
+                        <motion.button whileHover={headerButtonHover} className='header-button' onClick={(e) => handleClick(e, "#about-me")}>
                             About Me
-                        </motion.a>
-                        <motion.a whileHover={headerButtonHover} className='header-button' href='#projects'>
+                        </motion.button>
+                        <motion.button whileHover={headerButtonHover} className='header-button' onClick={(e) => handleClick(e, "#projects")}>
                             Projects
-                        </motion.a>
-                        <motion.a whileHover={headerButtonHover} className='header-button' href='#contact'>
+                        </motion.button>
+                        <motion.button whileHover={headerButtonHover} className='header-button' onClick={(e) => handleClick(e, "#contact")}>
                             Contact Me
-                        </motion.a>
+                        </motion.button>
                     </motion.div>
                 }
-            </AnimatePresence >
-        </motion.div >
+            </motion.div >
+        </AnimatePresence >
     )
 }
 

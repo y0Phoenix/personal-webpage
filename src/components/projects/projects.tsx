@@ -4,7 +4,7 @@ import { projectHover, sectionNoShow, sectionShow, sectionShowTransition, } from
 
 const Projects = () => {
     return (
-        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} viewport={{ once: true }} className="projects-main">
+        <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} viewport={{ once: true }} className="projects-main" id="projects">
             <h1 className='header'>Projects</h1>
             <div className='projects-content section'>
                 <motion.div whileHover={projectHover} className='project'>

@@ -11,7 +11,7 @@
     --gradient-2-3: #94157A;
     --bg: #292929;
     --bg-dark: #111111;
-    --bg-light: rgba(53, 53, 53, 0.9);
+    --bg-light: rgba(53, 53, 53, 0.92);
 }
 
 @media (max-width: 900px) {
@@ -66,6 +66,7 @@ a {
 }
 .highlighted { 
     background-image: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text; 
 } 

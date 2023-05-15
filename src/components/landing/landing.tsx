@@ -40,7 +40,7 @@ const Landing = () => {
     let letterCount = 0;
 
     return (
-        <div className='landing-main'>
+        <div className='landing-main' id="landing">
             <h1 className='header landing-header'>
                 {header.split("").map((str, i) => {
                     letterCount += 0.05;
