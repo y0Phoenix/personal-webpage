@@ -1,11 +1,11 @@
 // conatnts for configuring the overall behavior of the polygons
-export const SIZE_MIN = 4;
-export const SIZE_MAX = 12;
+export const SIZE_MIN = 7;
+export const SIZE_MAX = 16;
 export const SQUARE_COUNT = 20;
 export const SQUARES_PER_COLUMN = 2;
 export const RIGHT_BOUNDARY_BUFFER = 100;
 export const LEFT_BOUNDARY_BUFFER = 5;
-export const TOP_BOUNDARY_BUFFER = window.innerWidth <= 500 ? 550 : 100;
+export const TOP_BOUNDARY_BUFFER = window.innerWidth <= 800 ? 550 : 100;
 export const X_VELOCITY_MIN = 0.15;
 export const X_VELOCITY_MAX = 0.45;
 export const Y_VELOCITY_MIN = 0.05;
@@ -24,14 +24,14 @@ export type PolygonProps = {
 export class Polygon {
     /**
      * values are in vw instead of px
-     **/ 
+     **/
     rect: Rect = {
         top: 0,
         left: 0
     };
     /**
      * values are in vw instead of px
-    **/ 
+    **/
     center: Vec2 = {
         x: 0,
         y: 0
@@ -53,7 +53,7 @@ export class Polygon {
      * the vertices with the angle calculated
      * */
     trVertices: Vec2[] = [];
-    direction: Direction; 
+    direction: Direction;
     inCollision = false;
     /**
      * values are in px not vw
@@ -69,11 +69,11 @@ export class Polygon {
         // min max values for the random calulation
         const topMin = column * columnSize;
         const topMax = topMin + columnSize;
-        
+
         // min max values for the random calulation
         const leftMin = leftSide ? 10 : 50;
         const leftMax = leftSide ? 50 : 90;
-        
+
         this.rect = {
             top: random(topMin, topMax),
             left: random(leftMin, leftMax)
@@ -97,7 +97,7 @@ export class Polygon {
             const newX = this.center.x + (((vertex.x - this.center.x) * cos) - ((vertex.y - this.center.y) * sin));
             const newY = this.center.y + (((vertex.y - this.center.y) * cos) + ((vertex.x - this.center.x) * sin));
 
-            return {x: newX, y: newY};
+            return { x: newX, y: newY };
         })
     }
     /**
@@ -105,10 +105,10 @@ export class Polygon {
      * */
     getOgVertices() {
         this.ogVertices = [
-            {x: vwToPx(this.rect.left), y: vwToPx(this.rect.top)},
-            {x: vwToPx(this.rect.left) + vwToPx(this.size), y: vwToPx(this.rect.top)},
-            {x: vwToPx(this.rect.left) + vwToPx(this.size), y: vwToPx(this.rect.top) + vwToPx(this.size)},
-            {x: vwToPx(this.rect.left), y: vwToPx(this.rect.top) + vwToPx(this.size)}
+            { x: vwToPx(this.rect.left), y: vwToPx(this.rect.top) },
+            { x: vwToPx(this.rect.left) + vwToPx(this.size), y: vwToPx(this.rect.top) },
+            { x: vwToPx(this.rect.left) + vwToPx(this.size), y: vwToPx(this.rect.top) + vwToPx(this.size) },
+            { x: vwToPx(this.rect.left), y: vwToPx(this.rect.top) + vwToPx(this.size) }
         ];
         const halfSize = vwToPx(this.size) / 2;
         this.center = {
@@ -121,9 +121,9 @@ export class Polygon {
      * check if the polygon is outofbounds. returns an OutOfBounds enum which determines where the shape is out of bounds
      * */
     checkBoundaries(): OutOfBounds {
-        for(let i = 0; i < this.trVertices.length; i++) {
+        for (let i = 0; i < this.trVertices.length; i++) {
             const vertex = this.trVertices[i];
-            const bodyHeight = document.body.scrollHeight;
+            const bodyHeight = document.body.scrollHeight > 6100 ? document.body.scrollHeight : 1.33 * document.body.scrollHeight;
             if (vertex.x >= document.body.clientWidth - RIGHT_BOUNDARY_BUFFER) {
                 this.direction.x = "left";
                 return OutOfBounds.right;
@@ -149,15 +149,15 @@ export class Polygon {
     moveFromBoundaries() {
         const outOfBounds = this.checkBoundaries();
         if (outOfBounds == OutOfBounds.not) return;
-        this.setDirectionBoundaries(outOfBounds); 
-        for(;;) {
+        this.setDirectionBoundaries(outOfBounds);
+        for (; ;) {
             const newOutOfBounds = this.checkBoundaries();
             // if we have changed the out of bounds type we change the direction as well
             if (newOutOfBounds !== outOfBounds) {
                 this.setDirectionBoundaries(newOutOfBounds);
             }
             if (newOutOfBounds == OutOfBounds.not) return;
-           
+
             this.move(5);
 
             this.getOgVertices();
@@ -182,7 +182,7 @@ export class Polygon {
     /**
      * set the new direction based on the OutOfBounds type
      * */
-    setDirectionBoundaries(outOfBounds: OutOfBounds) {         
+    setDirectionBoundaries(outOfBounds: OutOfBounds) {
         if (outOfBounds == OutOfBounds.top) this.direction.y = "down";
         else if (outOfBounds == OutOfBounds.bottom) this.direction.y = "up";
         else if (outOfBounds == OutOfBounds.left) this.direction.x = "right";
@@ -198,9 +198,12 @@ export class Polygons {
     constructor() {
         let column = 0;
         const viewportWidth = window.innerWidth;
-        const columnSize = ((document.body.scrollHeight / viewportWidth) * 100) / (SQUARE_COUNT / SQUARES_PER_COLUMN);
-        for(let i = 0; i < SQUARE_COUNT; i += 2, column++) {
-            for(let j = 0; j < SQUARES_PER_COLUMN; j++) {
+        const multiplier = viewportWidth > 1440 ? 1.50 : viewportWidth >= 768 ? 1.25 : viewportWidth >= 425 ? 1.45 : 1.25;
+        const bodyHeight = document.body.scrollHeight > 6100 ? document.body.scrollHeight : multiplier * document.body.scrollHeight;
+        const columnSize = ((bodyHeight / viewportWidth) * 100) / (SQUARE_COUNT / SQUARES_PER_COLUMN);
+        console.log(document.body.scrollHeight);
+        for (let i = 0; i < SQUARE_COUNT; i += 2, column++) {
+            for (let j = 0; j < SQUARES_PER_COLUMN; j++) {
                 this.polygons.push(new Polygon({
                     column,
                     columnSize,
@@ -217,7 +220,7 @@ export class Polygons {
      * gets the polygon from the id if it exists otherwise returns null
      * */
     getPolyById(id: string): Polygon | null {
-        for(let i = 0; i < this.polygons.length; i++) {
+        for (let i = 0; i < this.polygons.length; i++) {
             if (this.polygons[i].id == id) return this.polygons[i];
         }
         return null;
@@ -244,7 +247,7 @@ export class Polygons {
                                 poly1.move(5);
                                 poly2.move(5);
 
-                                while(collision(poly1.trVertices, poly2.trVertices)) {
+                                while (collision(poly1.trVertices, poly2.trVertices)) {
                                     poly1.move(5);
                                     poly2.move(5);
 
@@ -371,11 +374,11 @@ export function vwToPx(vw: number): number {
 export function pxToVw(px: number): number {
     return px / window.innerWidth * 100;
 }
-export function dotProduct(v1: Vec2, v2: Vec2) : number{
+export function dotProduct(v1: Vec2, v2: Vec2): number {
     return v1.x * v2.x + v1.y * v2.y;
 }
 
-export function getEdges(vertices: Vec2[]) : Vec2[] {
+export function getEdges(vertices: Vec2[]): Vec2[] {
     const edges = [];
     for (let i = 0; i < vertices.length; i++) {
         const v1 = vertices[i];
@@ -385,7 +388,7 @@ export function getEdges(vertices: Vec2[]) : Vec2[] {
     return edges;
 }
 
-export function getPerpendicular(edge: Vec2) : Vec2 {
+export function getPerpendicular(edge: Vec2): Vec2 {
     return { x: -edge.y, y: edge.x };
 }
 

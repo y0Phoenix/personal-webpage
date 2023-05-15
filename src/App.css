@@ -11,7 +11,7 @@
     --gradient-2-3: #94157A;
     --bg: #292929;
     --bg-dark: #111111;
-    --bg-light: #353535;
+    --bg-light: rgba(53, 53, 53, 0.9);
 }
 
 @media (max-width: 900px) {

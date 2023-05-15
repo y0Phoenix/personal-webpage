@@ -104,6 +104,7 @@
 @media (max-width: 900px) {
     .name-email-container {
         flex-direction: column;
+        gap: 0;
     }
     .name-email-container .form-group {
         flex-basis: 100%;

@@ -9,7 +9,6 @@ import Landing from './components/landing/landing';
 function App() {
     return (
         <>
-            <Background />
             <div className='main'>
                 <Landing />
                 <Header />
@@ -17,6 +16,7 @@ function App() {
                 <Projects />
                 <Contact />
             </div>
+            <Background />
         </>
     )
 }

@@ -1,20 +1,17 @@
 import { useState } from 'react'
 import logo from '../../assets/logo.png'
-import { HeaderLinkShow, headerButtonHover, headerDelay, headerLinksNoShow, noShow, show } from '../configs/motion'
+import { headerButtonHover, headerDelay, noShow, show } from '../configs/motion'
 import './header.css'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const Header = () => {
     const [showLinks, setShowLinks] = useState(true);
-    const [isVertical, setIsVertical] = useState(false);
     const hidePos = 200;
     window.addEventListener("scroll", () => {
-        if (isVertical) {
-            if (window.scrollY > hidePos && showLinks) setShowLinks(false);
-            else if (window.scrollY < hidePos && !showLinks) setShowLinks(true);
-        }
+        const isVertical = document.body.clientWidth <= 800;
+        if (window.scrollY > hidePos && showLinks && isVertical) setShowLinks(false);
+        else if (window.scrollY < hidePos && !showLinks && isVertical) setShowLinks(true);
     });
-    window.addEventListener("resize", () => document.body.clientWidth <= 800 ? setIsVertical(true) : setIsVertical(false));
 
     return (
         <motion.div initial={noShow} animate={show} transition={headerDelay} className='header-main'>
