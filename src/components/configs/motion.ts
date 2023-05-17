@@ -24,6 +24,7 @@ export const sectionShow = {
 export const headerDelay = {
     delay: 0.3
 };
+export const headerDelayInc = 0.05;
 export const backgroundDelay = 0.35;
 export const landingHeaderDelay = 0.50;
 export const sectionShowTransition = {

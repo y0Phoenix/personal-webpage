@@ -3,7 +3,7 @@ export const SIZE_MIN = 7;
 export const SIZE_MAX = 16;
 export const SQUARE_COUNT = 20;
 export const SQUARES_PER_COLUMN = 2;
-export const RIGHT_BOUNDARY_BUFFER = 100;
+export const RIGHT_BOUNDARY_BUFFER = 25;
 export const LEFT_BOUNDARY_BUFFER = 5;
 export const TOP_BOUNDARY_BUFFER = window.innerWidth <= 800 ? 550 : 100;
 export const X_VELOCITY_MIN = 0.15;
@@ -201,7 +201,6 @@ export class Polygons {
         const multiplier = viewportWidth > 1440 ? 1.50 : viewportWidth >= 768 ? 1.25 : viewportWidth >= 425 ? 1.45 : 1.25;
         const bodyHeight = document.body.scrollHeight > 6100 ? document.body.scrollHeight : multiplier * document.body.scrollHeight;
         const columnSize = ((bodyHeight / viewportWidth) * 100) / (SQUARE_COUNT / SQUARES_PER_COLUMN);
-        console.log(document.body.scrollHeight);
         for (let i = 0; i < SQUARE_COUNT; i += 2, column++) {
             for (let j = 0; j < SQUARES_PER_COLUMN; j++) {
                 this.polygons.push(new Polygon({

@@ -1,56 +1,30 @@
-import { useEffect, useState } from 'react';
 import './landing.css';
 import { motion } from 'framer-motion';
-import { landingHeaderDelay, noShow, sectionNoShow, sectionShow, sectionShowTransition, show } from '../configs/motion';
-
-const VIDEO_WIDTH = 560;
-const VIDEO_HEIGHT = 315;
-
-type VideoRes = {
-    height: number,
-    width: number
-}
-
-const videoWidth = () => (window.innerWidth / 1000) * VIDEO_WIDTH;
-const videoHeight = () => (window.innerWidth / 1000) * VIDEO_HEIGHT;
+import { headerDelay, headerDelayInc, noShow, sectionNoShow, sectionShow, sectionShowTransition, show, } from '../configs/motion';
 
 const Landing = () => {
-    // const [videoRes, setVideoRes] = useState<VideoRes>({
-    //     height: videoHeight(),
-    //     width: videoWidth() 
-    // });
-    //
-    // window.addEventListener("resize", (e) => {
-    //     console.log("resize");
-    //     setVideoRes({
-    //         height: videoHeight(),
-    //         width: videoWidth()
-    //     });
-    // });
+    const header = `Hi 👋  I'm Aaron. I am a Certified Full Stack Engineer 🧑‍💻  Please Enjoy my Website 🙂`;
 
-    // useEffect(() => {
-    //     const handleResize = () => setWindowSize(window.innerWidth);
-    //
-    //     window.addEventListener("resize", () => handleResize);
-    //
-    //     return () => window.removeEventListener("resize", handleResize);
-    // }, []);
-
-    const header = "Hi 👋 I'm Aaron. I am a Certified Full Stack Engineer 👨‍💻\nPlease Enjoy my Website 🙂";
-    let letterCount = 0;
+    const fadedHeader: JSX.Element[] = [];
+    let emoji = "";
+    for (let i = 0; i < header.length; i++) {
+        let str = header[i];
+        console.log(header.length, str);
+        if (str.charCodeAt(0) > 255) emoji += str;
+        else {
+            str += emoji;
+            emoji = "";
+            fadedHeader.push(
+                <motion.span key={i} initial={noShow} animate={show} transition={{ delay: headerDelay.delay + (i * headerDelayInc) }}>{str}</motion.span>
+            )
+        }
+    }
+    // if there was an emoji at the end of the string
+    if (emoji.length > 0) fadedHeader.push(<motion.span key={header.length} initial={noShow} animate={show} transition={{ delay: headerDelay.delay + (header.length * headerDelayInc) }}>{emoji}</motion.span>);
 
     return (
         <div className='landing-main' id="landing">
-            <h1 className='header landing-header'>
-                {header.split("").map((str, i) => {
-                    letterCount += 0.05;
-                    return (
-                        <motion.span key={str + i} initial={noShow} animate={show} transition={{ delay: letterCount + landingHeaderDelay }}>
-                            {str}
-                        </motion.span>
-                    )
-                })}
-            </h1>
+            <h1 id="landing-header" className='header landing-header'>{fadedHeader}</h1>
             <motion.div initial={sectionNoShow} whileInView={sectionShow} transition={sectionShowTransition} viewport={{ once: true }} className='video-main-container'>
                 <div className='video-main section'>
                     <div className="video-container">
