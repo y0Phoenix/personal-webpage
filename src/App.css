@@ -44,6 +44,9 @@ a {
     flex-direction: column;
     gap: 50px;
 }
+.no-pointer {
+    pointer-events: none;
+}
 .flex {
     display: flex;
 }

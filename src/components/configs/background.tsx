@@ -3,7 +3,7 @@ export const SIZE_MIN = 7;
 export const SIZE_MAX = 16;
 export const SQUARE_COUNT = 20;
 export const SQUARES_PER_COLUMN = 2;
-export const RIGHT_BOUNDARY_BUFFER = 25;
+export const RIGHT_BOUNDARY_BUFFER = 50;
 export const LEFT_BOUNDARY_BUFFER = 5;
 export const TOP_BOUNDARY_BUFFER = window.innerWidth <= 800 ? 550 : 100;
 export const X_VELOCITY_MIN = 0.15;

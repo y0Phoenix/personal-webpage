@@ -33,3 +33,33 @@ export const sectionShowTransition = {
     bounce: 0.2,
     duration: 0.8
 };
+export const logoNormal = {
+    height: '38px',
+    width: '126px'
+}
+export const logoSmall = {
+    height: "19px",
+    width: "63px"
+}
+export const headerLinksNoShow = {
+    height: 0,
+    opacity: 0
+}
+export const headeLinksShow = {
+    height: 'auto',
+    opacity: 1
+}
+export const headerLinksTransition = {
+    duration: 1,
+    type: "spring",
+    stiffness: 50
+}
+export const headerMainNormal = {
+    height: 'fit-content'
+}
+export const headerMainVertical = {
+    height: '325px'
+}
+export const headerMainSmall = {
+    height: '75px'
+}

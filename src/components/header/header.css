@@ -1,13 +1,18 @@
 /* the original size of the logo is 378 113 */
 .logo {
-    height: 38px;
-    width: 126px;
+    /* height: 38px; */
+    /* width: 126px; */
     padding: 40px 80px 20px 80px;
+}
+.logo-sm {
+    height: 19px;
+    width: 63px;
+    padding: 40px 80px 20px 80px;
+
 }
 .header-main {
     display: flex;
     flex-direction: row;
-    height: fit-content;
     position: fixed;
     top: 0;
     left: 0;
