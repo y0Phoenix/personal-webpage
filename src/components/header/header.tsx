@@ -15,7 +15,7 @@ const Header = () => {
 
     const isOpen = () => animation == "open";
 
-    const hidePos = 200;
+    const hidePos = 30;
     window.addEventListener("scroll", () => {
         const isVertical = document.body.clientWidth <= 800;
         const showPos = window.scrollY > hidePos;
@@ -37,11 +37,11 @@ const Header = () => {
             left: 0,
             behavior: "smooth"
         });
-        console.log(document.getElementById(id));
-        setTimeout(() => window.scrollBy({ top: -150, left: 0, behavior: "smooth" }), 400);
-        setTimeout(() => document.getElementById(id)?.scrollIntoView({
-            behavior: "smooth"
-        }), headerLinksTransition.duration * 2500);
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        // setTimeout(() => window.scrollBy({ top: -150, left: 0, behavior: "smooth" }), 400);
+        // setTimeout(() => document.getElementById(id)?.scrollIntoView({
+        //     behavior: "smooth"
+        // }), headerLinksTransition.duration * 2500);
     }
 
     const isVertical = document.body.clientWidth <= 800;
