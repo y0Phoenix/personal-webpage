@@ -9,7 +9,6 @@ const Landing = () => {
     let emoji = "";
     for (let i = 0; i < header.length; i++) {
         let str = header[i];
-        console.log(header.length, str);
         if (str.charCodeAt(0) > 255) emoji += str;
         else {
             str += emoji;

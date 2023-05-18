@@ -42,17 +42,18 @@ export const logoSmall = {
     width: "63px"
 }
 export const headerLinksNoShow = {
-    height: 0,
+    diplay: 'none',
     opacity: 0
 }
 export const headeLinksShow = {
-    height: 'auto',
+    display: 'flex',
     opacity: 1
 }
 export const headerLinksTransition = {
-    duration: 1,
+    duration: 0.3,
     type: "spring",
-    stiffness: 50
+    stiffness: 50,
+    bounce: 10
 }
 export const headerMainNormal = {
     height: 'fit-content'
