@@ -85,8 +85,16 @@ a {
 .bg-transparent {
     background-color: transparent;
 }
-@media (min-width: 2000px) {
+@media (max-width: 2000px) {
     .header {
         font-size: 80px;
+    }
+}
+@media (max-width: 425px) {
+    .header {
+        font-size: 40px;
+    }
+    .section {
+        padding: 10px;
     }
 }
