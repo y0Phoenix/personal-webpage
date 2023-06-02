@@ -22,3 +22,8 @@
 .footer-content a:hover {
     color: var(--baby-blue);
 } 
+@media (max-width: 375px) {
+    .footer-main {
+        font-size: 20px;
+    }
+}

@@ -109,4 +109,7 @@
     .name-email-container .form-group {
         flex-basis: 100%;
     }
+    .submit-container {
+        align-self: center;
+    }
 }

@@ -8,7 +8,7 @@
 .landing-main {
     display: flex;
     flex-direction: column;
-    margin-top: 10vw;
+    margin-top: 5vw;
 }
 .video {
     position: absolute;

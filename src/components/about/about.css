@@ -21,14 +21,14 @@
     justify-content: center;
     align-items: center;
 }
-@media (max-width: 2000px) {
+@media (min-width: 2500px) {
     .about-content {
         font-size: 60px;
     }
 }
 @media (max-width: 1440px) {
     .about-content {
-        font-size: 40px;
+        font-size: 35px;
     }
 }
 @media (max-width: 1024px) {
