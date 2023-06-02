@@ -8,6 +8,7 @@ type Animation = "open" | "close";
 
 const Header = () => {
     const [animation, setAnimation] = useState<Animation>("open");
+    const [isVertical, setIsVertical] = useState(window.innerWidth <= 800);
 
     const handleClose = () => setAnimation("close");
 
@@ -22,6 +23,14 @@ const Header = () => {
         if (isVertical) {
             if (showPos && animation == "open") handleClose();
             else if (!showPos && animation == "close") handleOpen();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth <= 800 && !isVertical) setIsVertical(true);
+        else if (window.innerWidth > 800 && isVertical) {
+            setIsVertical(false);
+            setAnimation("open");
         }
     })
 
@@ -43,8 +52,6 @@ const Header = () => {
         //     behavior: "smooth"
         // }), headerLinksTransition.duration * 2500);
     }
-
-    const isVertical = document.body.clientWidth <= 800;
 
     return (
         <AnimatePresence>
