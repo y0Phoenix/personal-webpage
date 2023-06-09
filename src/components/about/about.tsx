@@ -10,16 +10,20 @@ const About = () => {
             <div className="about-content">
                 <div className="about">
                     <p>
-                        I grew up working with computers and playing video games, so When it came to understanding basic computer science I had a small
-                        advantage. Although most of my time was spent playing games I made YouTube videos, kind of embarrassing, however making videos
-                        and thumbnails taught me alot about graphics, process and vision.
+                        I developed a passion for computers at a young age, giving me a natural advantage when it comes to understanding basic computer science.
+                        I've always enjoyed tinkering with computer hardware and diving into computer code, finding it thrilling to unravel how things work.
+                        Today, as a <i className="highlighted">Certified Full Stack Engineer</i>, I have successfully created numerous websites and completed various personal and school projects.
                         <br></br>
                         <br></br>
-                        I started out by making Smoothy as an answer to the <i className="highlighted">Discord Music Bots</i> getting
-                        shutdown. It is built with <i className="highlighted">Node</i> and an npm package called <i className="highlighted">Discord.js</i>. It communicates with the <i className="highlighted">Discord API</i> to
-                        send and recieve messages and play music in voice channels. Not long after I started that project
-                        I enrolled in a <i className="highlighted">Full Stack Bootcamp</i>. I am now a passionate developer who has worked with <i className="highlighted">Linux</i> and even <i className="highlighted">Microcontrollers</i> running
-                        binary <i className="highlighted">C++</i> code, ontop of being a <i className="highlighted">Web Developer</i> I have learned so much in my short "dev age".
+                        My journey began with the creation of <i className="highlighted">Smoothy</i>, a <i className="highlighted">Discord Music Bot</i> that I designed as a response to the shutdown of existing
+                        Discord Music Bots. I built it using <i className="highlighted">Node.js</i> and leveraged the power of the <i className="highlighted">Discord.js</i> npm package. Smoothy interacts
+                        with the Discord API, enabling it to send and receive messages and play music in voice channels.
+                        Since then, my programming repertoire has expanded to include languages such as <i className="highlighted">C/C++, Java, and Rust</i>
+                        <br></br>
+                        <br></br>
+                        While my primary focus lies in <i className="highlighted">web development</i>, I also derive great satisfaction from writing software for <i className="highlighted">games</i> and <i className="highlighted">embedded devices</i>.                        In truth, I enjoy crafting software of all kinds. There's an almost magical quality to engineering software that seamlessly works and serves a practical purpose.
+                        It's like solving a perfect puzzle—while writing code, you constantly find yourself navigating the delicate balance between <i className="highlighted">design</i> and <i className="highlighted">functionality</i>, striving
+                        for <i className="highlighted">performant</i> and <i className="highlighted">clean</i> code, and of course determining the right time for a bathroom break.
                     </p>
                 </div>
             </div>
