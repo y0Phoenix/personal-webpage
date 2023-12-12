@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { headerDelay, headerDelayInc, noShow, sectionNoShow, sectionShow, sectionShowTransition, show, } from '../configs/motion';
 
 const Landing = () => {
-    const header = `Hi 👋  I'm Aaron. I am a Certified Full Stack Engineer 🧑‍💻  Please Enjoy my Website 🙂`;
+    // const header = `Hi 👋  I'm Aaron. I am a Certified Full Stack Engineer 🧑‍💻  Please Enjoy my Website 🙂`;
+    const header = `Hi I'm Aaron Graybill. I am an MIT Certified Full Stack Engineer Please Enjoy my Website`;
 
     const fadedHeader: JSX.Element[] = [];
     let emoji = "";

@@ -14,7 +14,7 @@ export const noShow = {
     opacity: 0
 };
 export const sectionNoShow = {
-    y: 300,
+    y: 250,
     opacity: 0
 };
 export const sectionShow = {
