@@ -20,7 +20,7 @@ const Background = () => {
                 const {angle, rect, size, id} = square;
                 const gradient = Math.round(Math.random()) + 1;
                 return (
-                    <div key={id} className={`square square-gradient-${gradient}`}
+                    <object key={id} className={`square square-gradient-${gradient}`}
                         style={{
                             rotate: `${angle}deg`,
                             height: `${size}vw`,
@@ -28,7 +28,7 @@ const Background = () => {
                             top: `${rect.top}vw`,
                             left: `${rect.left}vw`
                         }} name='square' id={id} 
-                    ></div>
+                    ></object>
                 )
             })}
        </> 
