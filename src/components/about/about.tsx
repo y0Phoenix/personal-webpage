@@ -15,9 +15,9 @@ const About = () => {
                         code became a thrilling pursuit, and I found immense satisfaction in creating something useful.
                         Today, as a <a href="https://certificates.emeritus.org/3d4b2857-645a-48b5-b2c8-b2eb680d0868#gs.1dzze3" className="highlighted">MIT Certified Full Stack Engineer</a>, I have successfully
                         crafted numerous websites and completed various personal and school projects.
-                        <br></br>
-                        <br></br>
-                        My journey began with the creation
+                        {/* <br></br>
+                        <br></br> */}
+                        {/* My journey began with the creation
                         of <a href="https://github.com/y0phoenix/Smoothy" className="highlighted">Smoothy</a>, a <a href="https://discord.js.org/" className="highlighted">Discord Music Bot</a> that
                         I designed as a response to the shutdown of existing
                         Discord Music Bots. I built it using <a href="https://nodejs.org/en/about" className="highlighted">Node.js</a> and leveraged the power of the <a href="https://discord.js.org/" className="highlighted">Discord.js</a> npm package. Smoothy interacts
@@ -31,7 +31,7 @@ const About = () => {
                         In truth, I enjoy crafting software of all kinds. There's an almost magical quality to engineering software that seamlessly works and serves a practical purpose.
                         It's like solving a perfect puzzle—while writing code, you constantly find yourself navigating the delicate balance
                         between <a href="https://youtu.be/tv-_1er1mWI" className="highlighted">design</a> and <a href="https://youtu.be/tv-_1er1mWI" className="highlighted">functionality</a>, striving
-                        for <a href="https://youtu.be/OtozASk68Os" className="highlighted">performant</a> and <a href="https://youtu.be/OtozASk68Os" className="highlighted">clean</a> code, and of course determining the right time for a bathroom break.
+                        for <a href="https://youtu.be/OtozASk68Os" className="highlighted">performant</a> and <a href="https://youtu.be/OtozASk68Os" className="highlighted">clean</a> code, and of course determining the right time for a bathroom break. */}
                     </p>
                 </div>
             </div>

@@ -6,10 +6,10 @@ export const SQUARES_PER_COLUMN = 2;
 export const RIGHT_BOUNDARY_BUFFER = 50;
 export const LEFT_BOUNDARY_BUFFER = 5;
 export const TOP_BOUNDARY_BUFFER = window.innerWidth <= 800 ? 550 : 100;
-export const X_VELOCITY_MIN = 0.15;
-export const X_VELOCITY_MAX = 0.45;
+export const X_VELOCITY_MIN = 0.05;
+export const X_VELOCITY_MAX = 0.25;
 export const Y_VELOCITY_MIN = 0.05;
-export const Y_VELOCITY_MAX = 0.35;
+export const Y_VELOCITY_MAX = 0.25;
 export const ANGLE_VELOCITY_MIN = 0.65;
 export const ANGLE_VELOCITY_MAX = 0.95;
 
@@ -123,7 +123,10 @@ export class Polygon {
     checkBoundaries(): OutOfBounds {
         for (let i = 0; i < this.trVertices.length; i++) {
             const vertex = this.trVertices[i];
-            const bodyHeight = document.body.scrollHeight > 6100 ? document.body.scrollHeight : 1.33 * document.body.scrollHeight;
+            const bodyHeight = Math.max(
+                window.innerHeight, // Limit to viewport height
+                document.body.scrollHeight // Use full body height if smaller than viewport
+            );
             if (vertex.x >= document.body.clientWidth - RIGHT_BOUNDARY_BUFFER) {
                 this.direction.x = "left";
                 return OutOfBounds.right;
@@ -198,8 +201,10 @@ export class Polygons {
     constructor() {
         let column = 0;
         const viewportWidth = window.innerWidth;
-        const multiplier = viewportWidth > 1440 ? 1.50 : viewportWidth >= 768 ? 1.25 : viewportWidth >= 425 ? 1.45 : 1.25;
-        const bodyHeight = document.body.scrollHeight > 6100 ? document.body.scrollHeight : multiplier * document.body.scrollHeight;
+        const bodyHeight = Math.max(
+            window.innerHeight, // Limit to viewport height
+            document.body.scrollHeight // Use full body height if smaller than viewport
+        );        
         const columnSize = ((bodyHeight / viewportWidth) * 100) / (SQUARE_COUNT / SQUARES_PER_COLUMN);
         for (let i = 0; i < SQUARE_COUNT; i += 2, column++) {
             for (let j = 0; j < SQUARES_PER_COLUMN; j++) {

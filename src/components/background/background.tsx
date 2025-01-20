@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { SQUARE_COUNT, Polygons} from '../configs/background';
 import './background.css';
 import { useEffect, useState } from 'react';
@@ -11,7 +12,7 @@ const Background = () => {
         const interval = setInterval(() => {
             squares.update(squareElements); 
             setSquares(squares); 
-        }, 75);
+        }, 25);
         return () => clearInterval(interval);
     }, []);
     return (
@@ -36,3 +37,4 @@ const Background = () => {
 }
 
 export default Background;
+
