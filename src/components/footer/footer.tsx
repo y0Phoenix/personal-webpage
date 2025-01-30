@@ -16,6 +16,7 @@ const Footer = () => {
                     <i className="fa-brands fa-twitter"></i>
                 </motion.a>
             </div>
+            <p>Some assets created with AI assistance.</p>
             <p><span>&copy;</span> Aaron Graybill <span>2023</span></p>
         </div>
     )
