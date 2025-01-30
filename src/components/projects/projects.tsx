@@ -61,7 +61,7 @@ const Projects = () => {
                 />
                 <Project title="MIT Capstone Project"
                     img={mitCapstone}
-                    desc="A basic full-stack restaurant orderling application built in the MERN stack"
+                    desc="A basic full-stack restaurant ordering application built in the MERN stack"
                     url="https://github.com/y0Phoenix/mit-capstone-restaurant-app"
                 />
             </div>
