@@ -1,6 +1,6 @@
 import './landing.css';
 import { motion } from 'framer-motion';
-import { headerDelay, headerDelayInc, noShow, sectionNoShow, sectionShow, sectionShowTransition, show, } from '../configs/motion';
+import { headerDelay, headerDelayInc, noShow, show, } from '../configs/motion';
 
 const Landing = () => {
     const header = `Hi 👋  I'm Aaron. I am a Certified Full Stack Engineer 🧑‍💻  Please Enjoy my Website 🙂`;
