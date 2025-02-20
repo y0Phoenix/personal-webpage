@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { sectionNoShow, sectionShow, sectionShowTransition, } from "../configs/motion";
-import aaron from '../../assets/istockphoto-1372353155-612x612.jpg';
+import aaron from '../../assets/aaron coding.png';
 import './about.css';
 
 const About = () => {
